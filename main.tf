@@ -1,26 +1,28 @@
 provider "google" {
 version = "3.5.0"
+credentials = 
 project = "mythic-tribute-352813"
 region = "us-central1"
 zone = "us-central1-c"
 }
 
-resource "google_compute_network" "vpc_network" {
-name = "terraform-network"
-}
-resource "google_compute_instance" "vm_instance" {
-name = "terraform-instance2"
-machine_type = "f1-micro"
-zone = "us-central1-c"
-boot_disk {
-initialize_params {
-image = "centos-cloud/centos-7"
-}
-}
-
-network_interface {
-network = google_compute_network.vpc_network.name
-access_config {
-}
-}
+resource "google_container_cluster" "primary" {
+  name               = "k8s"
+  location           = "us-central1-a"
+  initial_node_count = 3
+  node_config {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    service_account = jenkins-service-account@mythic-tribute-352813.iam.gserviceaccount.com
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+    labels = {
+      foo = "bar"
+    }
+    tags = ["foo", "bar"]
+  }
+  timeouts {
+    create = "30m"
+    update = "40m"
+  }
 }
