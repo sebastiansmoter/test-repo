@@ -1,17 +1,17 @@
 {
   "steps": [
    {
-      "name": "gcr.io/[PROJECT_ID]/packer",
+      "name": "gcr.io/mythic-tribute-352813/packer",
       "args": [
         "build",
         "-var",
-        "image_name=[IMAGE_NAME]",
+        "image_name=CentOs8",
         "-var",
-        "project_id=[PROJECT_ID]",
+        "project_id=mythic-tribute-352813",
         "-var",
-        "image_family=[IMAGE_FAMILY]",
+        "image_family=centos-stream-8",
         "-var",
-        "image_zone=[IMAGE_ZONE]",
+        "image_zone=us-central1-c",
         "packer.json"
        ]
     }
