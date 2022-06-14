@@ -1,13 +1,13 @@
 packer {
   required_plugins {
-    docker = {
-      version = ">= 0.0.7"
-      source = "github.com/hashicorp/docker"
+    googlecompute = {
+      version = ">= 0.0.1"
+      source = "github.com/hashicorp/googlecompute"
     }
   }
 }
 
-source "docker" "ubuntu" {
+source "googlecompute" "ubuntu" {
   image  = "ubuntu:xenial"
   commit = true
 }
@@ -15,6 +15,6 @@ source "docker" "ubuntu" {
 build {
   name    = "learn-packer"
   sources = [
-    "source.docker.ubuntu"
+    "source.googlecompute.ubuntu"
   ]
 }
