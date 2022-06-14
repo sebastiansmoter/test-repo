@@ -9,11 +9,29 @@ packer {
 
 source "googlecompute" "basic-example" {
   project_id   = "mythic-tribute-352813"
-  source_image = "debian-9-stretch-v20200805"
+  source_image = "centos-stream-8-v20220519"
   zone         = "us-central1-a"
-  ssh_username = "root"
+  ssh_username = "jenkins-service-account"
 }
 
 build {
   sources = ["sources.googlecompute.basic-example"]
+
+  provisioner "shell" {
+    inline = [
+      "sudo dnf install nginx",
+      "y",
+      "sudo systemctl enable nginx",
+      "sudo systemctl start nginx",
+      "sudo firewall-cmd --permanent --add-service=http",
+      "sudo firewall-cmd --permanent --list-all",
+      "sudo firewall-cmd --reload"
+    ]
+  }
 }
+
+
+
+
+
+
