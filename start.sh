@@ -1,3 +1,3 @@
 #!/bin/bash
-echo "testuje dzialanie"
+cd /home
 mkdir foldertestowy
