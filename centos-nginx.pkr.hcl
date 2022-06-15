@@ -27,7 +27,18 @@ build {
       "sudo firewall-cmd --reload"
     ]
   }
-  
+ }
+
+{
+  "builders": [{
+    "type": "googlecompute",
+    "metadata": {
+      "startup-script": "<
+      #!/bin/sh
+      sudo systemctl start nginx
+      >"
+    }
+  }]
 }
 
 
