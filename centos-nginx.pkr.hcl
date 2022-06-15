@@ -19,7 +19,7 @@ build {
   
     provisioner "shell" {
     inline = [
-      "sudo -y dnf install nginx",
+      "sudo dnf install nginx --assumeyes",
       "sudo systemctl enable nginx",
       "sudo systemctl start nginx",
       "sudo firewall-cmd --permanent --add-service=http",
