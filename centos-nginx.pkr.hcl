@@ -12,6 +12,7 @@ source "googlecompute" "basic-example" {
   source_image = "centos-stream-8-v20220519"
   zone         = "us-central1-a"
   ssh_username = "jenkins-service-account"
+  startup_script_file = "start.sh"
 }
 
 build {
