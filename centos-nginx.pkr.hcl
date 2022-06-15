@@ -12,6 +12,14 @@ source "googlecompute" "basic-example" {
   source_image = "centos-stream-8-v20220519"
   zone         = "us-central1-a"
   ssh_username = "jenkins-service-account"
+  metadata = {
+    windows-startup-script-cmd = 
+    "sudo systemctl enable nginx
+     sudo systemctl start nginx
+     sudo firewall-cmd --permanent --add-service=http
+     sudo firewall-cmd --permanent --list-all
+     sudo firewall-cmd --reload"
+  }
 }
 
 build {
