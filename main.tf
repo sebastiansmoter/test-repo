@@ -6,7 +6,7 @@ zone = "us-central1-c"
 }
 
 resource "google_storage_bucket" "default" {
-  name          = "bucket-tfstatetf1"
+  name          = "bucket-tfstatetf-test"
   force_destroy = false
   location      = "US"
   storage_class = "STANDARD"
